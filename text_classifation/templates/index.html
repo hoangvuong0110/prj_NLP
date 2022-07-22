@@ -1,0 +1,57 @@
+{%extends "base.html"%}
+
+{%block content%}
+
+<center>
+
+    <div class="bg-text">
+        <div class="header">
+            <h3>Text Classification</h3>
+        </div>
+        <div class="container">
+            <form action="{{url_for('after')}}" method='POST' enctype='multipart/form-data'>
+                <div class="row">
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 input">
+                        <h5>Input</h5>
+                       <input type="text" name="text_input">
+                       
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 ">
+                        <h5>Result</h5>
+                        <div class="card text-left" style="margin: 0px 30px;">
+                            <div class="card-body">
+                                <table class="table table-borderless" style="width: 100%;">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center" scope="col">Confidence</th>
+                                            <th class="text-center" scope="col">Class Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {%for i ,val in class_names%}
+                                        <tr>
+                                            <td class="text-center" scope="row">{{percents[i]}} %</td>
+                                            <td class="text-center">{{val}}</td>
+                                        </tr>
+                                        {%endfor%}
+                                    </tbody>
+                                </table>
+                                <h4 class="text-center" style="color: red;">{{data}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="predict">
+
+                    <!-- <input id="base64" type="text" name="text_base64"> -->
+                    <input id="link" type="text" name="link" style="display: none;">
+                    <button type="sumit">Predict</button>
+                </div>
+            </form>
+        </div>
+        <div class="footer">
+        </div>
+    </div>
+</center>
+
+{%endblock%}
